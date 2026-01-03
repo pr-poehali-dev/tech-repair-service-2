@@ -197,9 +197,7 @@ const Index = () => {
                 <a
                   href="tel:+79781234567"
                   className="text-2xl font-bold text-primary hover:underline"
-                >
-                  +7 (978) 123-45-67
-                </a>
+                >+7 (978)  546 25 72</a>
               </div>
               <div>
                 <Icon name="MessageCircle" className="mx-auto text-primary mb-3" size={40} />
