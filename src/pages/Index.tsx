@@ -1,9 +1,22 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
+  const [showPhone, setShowPhone] = React.useState(false);
+  const phoneNumber = "+79785462572";
+
+  const handleCallClick = () => {
+    setShowPhone(true);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(phoneNumber);
+    alert("Номер скопирован!");
+  };
+
   const services = [
     {
       category: "Телевизоры",
@@ -80,10 +93,29 @@ const Index = () => {
               <span className="font-medium">Гарантия 1 год</span>
             </div>
           </div>
-          <Button size="lg" className="text-lg px-8 py-6">
-            <Icon name="Phone" className="mr-2" size={20} />
-            Позвонить мастеру
-          </Button>
+          {!showPhone ? (
+            <Button size="lg" className="text-lg px-8 py-6" onClick={handleCallClick}>
+              <Icon name="Phone" className="mr-2" size={20} />
+              Позвонить мастеру
+            </Button>
+          ) : (
+            <Card className="inline-block p-6 animate-fade-in">
+              <p className="text-sm text-muted-foreground mb-2">Номер телефона мастера:</p>
+              <p className="text-2xl font-bold text-primary mb-4">{phoneNumber}</p>
+              <div className="flex gap-3 justify-center">
+                <Button onClick={handleCopyPhone} variant="outline">
+                  <Icon name="Copy" className="mr-2" size={18} />
+                  Скопировать
+                </Button>
+                <Button asChild>
+                  <a href={`tel:${phoneNumber}`}>
+                    <Icon name="Phone" className="mr-2" size={18} />
+                    Позвонить
+                  </a>
+                </Button>
+              </div>
+            </Card>
+          )}
         </div>
       </section>
 
